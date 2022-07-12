@@ -1,0 +1,55 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+
+class HelloWorld {
+    
+public static int[] GetMinMax(int low,int high,int arr[])
+{
+ int r[] = new int[2];
+ 
+ if(high == low)
+ {
+     r[0]=arr[low];
+     r[1]=arr[low];
+     return r;
+ }
+ else if(high == low +1)
+ {
+     r[0]=Math.min(arr[low],arr[high]);
+     r[1]=Math.max(arr[low],arr[high]);
+     return r;
+ }
+ else
+ {
+     int mid = (low+high)/2;
+     int a1[]=new int[2];
+     int a2[]=new int[2];
+     
+     a1= GetMinMax(low,mid,arr);
+     a2= GetMinMax(mid+1,high,arr);
+     
+     r[0]=Math.min(a1[0],a2[0]);
+     r[1]=Math.max(a1[1],a2[1]);
+     
+     
+ }
+ 
+ return r;
+}
+
+    
+    
+    public static void main(String[] args) {
+        
+        int arr[] = {-90,67,45,0,-34,-116};
+        int high = arr.length-1;
+        int low =0;
+
+        int[] r = GetMinMax(low,high,arr);
+        
+        System.out.println("Min:"+r[0]);
+        System.out.println("Max:"+r[1]);
+        
+    }
+}
