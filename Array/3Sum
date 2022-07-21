@@ -1,0 +1,47 @@
+class Solution {
+    
+    List<List<Integer>> res = new ArrayList();
+    public List<List<Integer>> threeSum(int[] nums) {
+        
+        Arrays.sort(nums);
+        
+        for(int i =0;i<=nums.length-1;i++)
+        {
+            if(i==0 || nums[i]!=nums[i-1])
+                twosum(i+1,nums.length-1,nums,0-nums[i]);
+        }
+        return res;
+    }
+    
+    void twosum(int l, int r, int[] nums, int target)
+    {
+        int a = nums[l-1];
+        
+        while(l<r)
+        {
+            if(nums[l]+nums[r]>target)
+                r=r-1;
+                
+            else if(nums[l]+nums[r]<target)
+                l=l+1;
+                
+            else
+            {
+                List<Integer> list = new ArrayList();
+                list.add(a);
+                list.add(nums[l]);
+                list.add(nums[r]);
+                
+                res.add(list);
+                
+                while(l<r && nums[l]==nums[l+1])
+                    l=l+1;
+                while(l<r && nums[r]==nums[r-1])
+                    r=r-1;
+                
+                l=l+1;
+                r=r-1;
+            }
+        }
+    }
+}
